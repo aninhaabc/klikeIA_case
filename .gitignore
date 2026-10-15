@@ -22,4 +22,4 @@ Thumbs.db
 models/*.pkl
 models/*.joblib
 
-data/*.csv
+data/klike_challenge_dataset.csv
