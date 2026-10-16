@@ -6,8 +6,6 @@ Análise exploratória, previsão do **Klike Score** e protótipo de recomendaç
 
 O objetivo é entender quais características dos criativos se relacionam com performance, prever o `klike_score` (escala de 0 a 100) e transformar evidências em sugestões acionáveis para profissionais de marketing.
 
-A abordagem privilegia **raciocínio analítico, comunicação, criatividade aplicada e pragmatismo**. Diferenças observadas entre campanhas não são tratadas como efeitos causais.
-
 ## Resultados principais
 
 | Etapa | Resultado |
@@ -19,7 +17,7 @@ A abordagem privilegia **raciocínio analítico, comunicação, criatividade apl
 | Importância preditiva | `has_hook`, `has_face` e `text_density` se destacaram na Permutation Importance |
 | Recommendations Engine | 392 de 500 campanhas (**78,4%**) com pelo menos três sugestões priorizadas, conforme a última execução registrada |
 
-A cobertura inclui tanto **melhorias previstas** quanto **hipóteses para teste**. Não significa que 78,4% das campanhas tenham três melhorias comprovadas.
+A cobertura inclui tanto **melhorias previstas** quanto **hipóteses para teste**.
 
 ## Estrutura do repositório
 
@@ -39,8 +37,6 @@ klikeIA_case/
 ├── .gitignore
 └── README.md
 ```
-
-Os nomes acima correspondem à organização recomendada para o repositório. Ajuste-os caso seus arquivos locais tenham nomes diferentes.
 
 ## Como executar
 
@@ -74,8 +70,6 @@ Coloque `klike_challenge_dataset.csv` em `data/`. Execute os notebooks **nesta o
 
 O terceiro notebook depende de `models/ridge_klike_score.joblib`, criado no segundo. Se o arquivo não existir, execute primeiro a célula de persistência do modelo. As figuras são gravadas em `img/`.
 
-> **Dataset:** não incluído no Git por precaução com a redistribuição dos materiais do processo seletivo. O avaliador deve obter o CSV da pasta original do challenge.
-
 ## Parte 1 — Análise Exploratória (EDA)
 
 Foram investigados valores ausentes, duplicatas, distribuições, outliers e consistência de métricas, além de comparações entre características dos criativos e resultados de campanhas.
@@ -108,19 +102,26 @@ O protótipo recebe uma campanha e:
 
 As saídas distinguem **melhoria prevista**, **hipótese para teste** e **alteração não priorizada**. As diferenças de Klike Score são previsões do modelo; diferenças de CTR são comparações observacionais.
 
-Na última execução registrada, **392/500 campanhas (78,4%)** receberam pelo menos três sugestões priorizadas. Em 108 campanhas o protótipo não alcançou esse mínimo. O sistema não inventa ganhos para completar a quantidade.
+Na última execução registrada, **392/500 campanhas (78,4%)** receberam pelo menos três sugestões priorizadas. Em 108 campanhas o protótipo não alcançou esse mínimo.
 
 ## Parte 4 — Visão de Produto
 
 As respostas sobre extração de features do vídeo original, arquitetura de produção e melhorias futuras estão em [product_vision.md](product_vision.md).
 
-## Limitações e próximos passos
+## Limitações
 
-- Dataset pequeno e simulado: resultados podem não se transferir diretamente para campanhas reais.
 - Comparações históricas observacionais, sujeitas a diferenças de público, orçamento e objetivo.
 - CTR usado como métrica contextual complementar mesmo quando o objetivo exige outros indicadores.
 - A própria campanha é excluída do histórico comparativo, mas ainda não há corte temporal para impedir o uso de campanhas posteriores.
 - O modelo não analisa o conteúdo audiovisual bruto e não representa todas as interações possíveis.
 - A cobertura do engine não garante a eficácia das recomendações.
 
-**Próximos passos prioritários:** métricas alinhadas ao objetivo, validação temporal, testes A/B, melhoria da cobertura e incorporação incremental de features audiovisuais.
+## Conclusão
+
+Este desafio permitiu desenvolver um fluxo de análise de dados que conecta a exploração de campanhas publicitárias, a previsão do Klike Score e a geração de recomendações para otimização de criativos.
+
+A análise exploratória identificou associações relevantes entre características dos criativos e métricas de performance, além de diferenças entre plataformas. A modelagem selecionou a Ridge Regression, que apresentou MAE de 6,785, RMSE de 8,749 e R² de 0,661 no conjunto de teste. Já o Recommendations Engine transformou as previsões e as evidências históricas em sugestões contextualizadas, alcançando cobertura de 78,4% para a geração de pelo menos três sugestões priorizadas na última execução registrada.
+
+O principal aprendizado é que **uma característica associada a mais cliques não necessariamente está associada a maior retorno financeiro**. Por isso, recomendações eficazes precisam considerar a plataforma, o objetivo da campanha, a métrica de interesse e a qualidade das evidências disponíveis.
+
+O protótipo é um ponto de partida para apoiar decisões de marketing, não um sistema que garante ganhos de performance. Como próximos passos, destacam-se a validação das recomendações por testes A/B, o uso de métricas alinhadas a cada objetivo de campanha e a extração de características diretamente dos vídeos.
