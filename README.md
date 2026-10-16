@@ -23,7 +23,7 @@ A cobertura inclui tanto **melhorias previstas** quanto **hipóteses para teste*
 
 ```text
 klikeIA_case/
-├── data/
+├── data/                               # dataset local , não versionado
 │   └── klike_challenge_dataset.csv  
 ├── img/                              
 ├── models/
@@ -37,6 +37,7 @@ klikeIA_case/
 ├── .gitignore
 └── README.md
 ```
+> **Nota sobre o dataset:** Este projeto utiliza o `klike_challenge_dataset.csv`, disponibilizado na pasta de materiais do desafio da Klike.ai. Por cuidado com a privacidade e com as condições de compartilhamento dos dados, o arquivo não é versionado neste repositório. Essa decisão também segue boas práticas de engenharia de dados: evitar incluir bases de dados diretamente no Git, especialmente quando possuem grande volume, reduz o tamanho do repositório e facilita sua manutenção. Para reproduzir as análises, obtenha o dataset nos materiais originais do desafio e coloque-o na pasta `data/`.
 
 ## Como executar
 
